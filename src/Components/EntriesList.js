@@ -1,15 +1,17 @@
 import React from "react";
+import EntryCard from "./EntryCard";
 
 function EntriesList({entries}){
 
    const displayEntryCards = entries.map(entry => {
-      return 
+      return <EntryCard key={entry.id} entry={entry}/>
    
    })
 
    return(
       <div>
-         EntriesList
+         EntriesList:
+         {displayEntryCards}
       </div>
    )
 }

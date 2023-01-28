@@ -1,9 +1,11 @@
 import React from "react";
 
-function EntryCard(){
+function EntryCard({entry}){
+   const {date, title} = entry;
    return(
       <div>
-         EntryCard
+         {title}
+         {date}
       </div>
    )
 }
