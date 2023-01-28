@@ -1,6 +1,12 @@
 import React from "react";
 
-function EntriesList(){
+function EntriesList({entries}){
+
+   const displayEntryCards = entries.map(entry => {
+      return 
+   
+   })
+
    return(
       <div>
          EntriesList
