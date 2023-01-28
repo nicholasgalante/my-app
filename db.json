@@ -1,0 +1,34 @@
+{
+  "entries": [
+      {
+          "id": 1,
+          "date": "2022-01-01",
+          "title": "New Year's Resolution",
+          "content": "I resolved to exercise more and eat healthier in the new year."
+      },
+      {
+          "id": 2,
+          "date": "2022-01-03",
+          "title": "First Day Back at Work",
+          "content": "It was a tough first day back at work after the holidays, but I'm looking forward to the new year and all the possibilities it holds."
+      },
+      {
+          "id": 3,
+          "date": "2022-01-05",
+          "title": "Weekend Adventure",
+          "content": "I went hiking in the mountains with some friends and it was a beautiful and refreshing experience."
+      },
+      {
+          "id": 4,
+          "date": "2022-01-07",
+          "title": "Feeling Stressed",
+          "content": "Work has been extremely busy and I'm feeling overwhelmed with stress. I need to find ways to relax and take care of myself."
+      },
+      {
+          "id": 5,
+          "date": "2022-01-09",
+          "title": "Quality Time with Family",
+          "content": "I had a great day spending time with my family. We went out to lunch and had a fun day together. I'm grateful for their love and support."
+      }
+  ]
+}
