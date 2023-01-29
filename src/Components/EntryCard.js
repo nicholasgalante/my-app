@@ -5,6 +5,7 @@ function EntryCard({entry}){
    return(
       <div>
          {title}
+         <br/>
          {date}
       </div>
    )

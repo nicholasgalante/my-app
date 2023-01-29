@@ -35,7 +35,6 @@ function EntryEditor({onAddEntry}) {
 
    return (
       <div>
-         EntryEditor
          <form id="entryEditor">
             <input
                type="text"

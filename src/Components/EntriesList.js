@@ -1,5 +1,6 @@
 import React from "react";
 import EntryCard from "./EntryCard";
+import Search from "./Search";
 
 function EntriesList({entries}){
 
@@ -10,7 +11,7 @@ function EntriesList({entries}){
 
    return(
       <div>
-         EntriesList:
+         <Search/>
          {displayEntryCards}
       </div>
    )
