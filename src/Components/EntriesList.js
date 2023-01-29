@@ -3,7 +3,7 @@ import EntryCard from "./EntryCard";
 import Search from "./Search";
 import {NavLink} from "react-router-dom";
 
-function EntriesList({ entries }) {
+function EntriesList({ entries, onSearch }) {
 
    const displayEntryCards = entries.map(entry => {
       return (
@@ -15,7 +15,7 @@ function EntriesList({ entries }) {
 
    return (
       <div>
-         <Search />
+         <Search entries={entries} onSearch={onSearch}/>
          {displayEntryCards}
       </div>
    )

@@ -8,7 +8,8 @@ import EntryEditor from "./EntryEditor";
 
 
 function App() {
-  const [entries, setEntries] = useState([])
+  const [entries, setEntries] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000/entries")
@@ -20,10 +21,21 @@ function App() {
     setEntries([...entries, newEntry])
   }
 
+  function onSearch(value) {
+    setSearchValue(value)
+  }
+
+  const displayedEntries = entries.filter(entry => {
+    return (entry.content.toLowerCase().includes(searchValue.toLowerCase())) || (entry.title.toLowerCase().includes(searchValue.toLowerCase()))
+  });
+
+  console.log("DISPLAYED ENTRIES",displayedEntries)
+
+
   return (
     <div>
       <NavBar />
-      <EntriesList entries={entries} />
+      <EntriesList entries={displayedEntries} onSearch={onSearch} />
       <Switch>
         <Route exact path="/NewEntry">
           <EntryEditor onAddEntry={onAddEntry} />
