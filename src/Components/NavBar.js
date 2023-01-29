@@ -8,9 +8,7 @@ function NavBar(){
          <NavLink to="/NewEntry">
             <button>New Entry</button>
          </NavLink>
-         <NavLink to="/EntryDetail">
             <button>New Category</button>
-         </NavLink>
       </div>
    )
 }

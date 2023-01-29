@@ -25,11 +25,11 @@ function App() {
       <NavBar />
       <EntriesList entries={entries} />
       <Switch>
-        <Route path="/NewEntry">
+        <Route exact path="/NewEntry">
           <EntryEditor onAddEntry={onAddEntry} />
         </Route>
-        <Route path="/EntryDetail">
-          <EntryDetail path="EntryDetail"/>
+        <Route exaact path="/EntryDetail">
+          <EntryDetail />
         </Route>
       </Switch>
     </div>
