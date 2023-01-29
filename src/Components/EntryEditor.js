@@ -8,7 +8,6 @@ function EntryEditor() {
    })
 
    function handleChange(event){
-      event.preventDefault();
       setFormData({
          ...formData,
          [event.target.name]: event.target.value,
@@ -16,8 +15,19 @@ function EntryEditor() {
       console.log(formData)
    }
 
-   function handleSubmit(){
-      
+   function handleSubmit(event){
+      event.preventDefault();
+      fetch("http://localhost:3000/entries", {
+         method: "POST",
+         headers: { "Content-Type": "application/json", },
+         body: JSON.stringify({
+           "title": formData.title,
+           "content": formData.content,
+           "date": formData.date
+         })
+       })
+         .then(res => res.json())
+         .then(newEntry => console.log(newEntry))
    }
 
    return (

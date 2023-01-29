@@ -3,6 +3,7 @@ import '../App.css';
 import NavBar from './NavBar';
 import EntriesList from './EntriesList';
 import EntryDetail from './EntryDetail';
+import EntryEditor from "./EntryEditor";
 
 
 function App() {
@@ -18,6 +19,7 @@ useEffect(()=>{
     <div>
       <NavBar />
       <EntriesList entries={entries}/>
+      <EntryEditor/>
       <EntryDetail />
     </div>
   );
