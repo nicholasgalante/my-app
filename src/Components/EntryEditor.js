@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function EntryEditor() {
+function EntryEditor({onAddEntry}) {
    const [formData, setFormData] = useState({
       title : "",
       content : "",
@@ -8,11 +8,13 @@ function EntryEditor() {
    })
 
    function handleChange(event){
+      const date = new Date().toJSON().slice(0, 10);;
       setFormData({
          ...formData,
          [event.target.name]: event.target.value,
+         date: date,
        });
-      console.log(formData)
+      console.log(formData) //CONSOLE LOG DATA
    }
 
    function handleSubmit(event){
@@ -27,7 +29,8 @@ function EntryEditor() {
          })
        })
          .then(res => res.json())
-         .then(newEntry => console.log(newEntry))
+         .then(newEntry => onAddEntry(newEntry))
+       event.reset()
    }
 
    return (
@@ -38,12 +41,14 @@ function EntryEditor() {
                type="text"
                name="title"
                onChange={handleChange}
+               value={formData.title}
             />
             <textarea id="entryEditor"
                name="content"
                rows="15"
                cols="100"
                onChange={handleChange}
+               value={formData.content}
                placeholder="Your text here ">
             </textarea>
             <button type="submit" onClick={handleSubmit}>Save Entry</button>

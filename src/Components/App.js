@@ -15,11 +15,15 @@ useEffect(()=>{
     .then(data => setEntries(data))
 },[])
 
+  function onAddEntry(newEntry){
+    setEntries([...entries, newEntry])
+  }
+
   return (
     <div>
       <NavBar />
       <EntriesList entries={entries}/>
-      <EntryEditor/>
+      <EntryEditor onAddEntry={onAddEntry}/>
       <EntryDetail />
     </div>
   );
