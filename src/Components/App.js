@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Route, Switch } from "react-router";
 import '../App.css';
 import NavBar from './NavBar';
 import EntriesList from './EntriesList';
@@ -7,24 +8,30 @@ import EntryEditor from "./EntryEditor";
 
 
 function App() {
-const [entries, setEntries] = useState([])
+  const [entries, setEntries] = useState([])
 
-useEffect(()=>{
-  fetch("http://localhost:3000/entries")
-    .then(res => res.json())
-    .then(data => setEntries(data))
-},[])
+  useEffect(() => {
+    fetch("http://localhost:3000/entries")
+      .then(res => res.json())
+      .then(data => setEntries(data))
+  }, [])
 
-  function onAddEntry(newEntry){
+  function onAddEntry(newEntry) {
     setEntries([...entries, newEntry])
   }
 
   return (
     <div>
       <NavBar />
-      <EntriesList entries={entries}/>
-      <EntryEditor onAddEntry={onAddEntry}/>
-      <EntryDetail />
+      <EntriesList entries={entries} />
+      <Switch>
+        <Route path="/NewEntry">
+          <EntryEditor onAddEntry={onAddEntry} />
+        </Route>
+        <Route path="/EntryDetail">
+          <EntryDetail path="EntryDetail"/>
+        </Route>
+      </Switch>
     </div>
   );
 }
