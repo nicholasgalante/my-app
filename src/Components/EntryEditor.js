@@ -41,6 +41,7 @@ function EntryEditor({onAddEntry}) {
                name="title"
                onChange={handleChange}
                value={formData.title}
+               placeholder="Enter a Title..."
             />
             <textarea id="entryEditor"
                name="content"
@@ -48,7 +49,7 @@ function EntryEditor({onAddEntry}) {
                cols="100"
                onChange={handleChange}
                value={formData.content}
-               placeholder="Your text here ">
+               placeholder="">
             </textarea>
             <button type="submit" onClick={handleSubmit}>Save Entry</button>
          </form>

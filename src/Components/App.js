@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router";
-import '../App.css';
 import NavBar from './NavBar';
 import EntriesList from './EntriesList';
 import EntryDetail from './EntryDetail';
@@ -29,8 +28,13 @@ function App() {
     return (entry.content.toLowerCase().includes(searchValue.toLowerCase())) || (entry.title.toLowerCase().includes(searchValue.toLowerCase()))
   });
 
-  console.log("DISPLAYED ENTRIES",displayedEntries)
-
+  const displayEntryDetails = entries.map(entry => {
+    return (
+      <Route exact path={'/EntryDetail/' + entry.id}>
+        <EntryDetail entry={entry} />
+      </Route>
+    )
+  })
 
   return (
     <div>
@@ -40,9 +44,7 @@ function App() {
         <Route exact path="/NewEntry">
           <EntryEditor onAddEntry={onAddEntry} />
         </Route>
-        <Route exaact path="/EntryDetail">
-          <EntryDetail />
-        </Route>
+        {displayEntryDetails}
       </Switch>
     </div>
   );

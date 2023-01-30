@@ -5,9 +5,13 @@ import {NavLink} from "react-router-dom";
 
 function EntriesList({ entries, onSearch }) {
 
+   function handleClick(entry){
+      console.log(entry)
+   }
+
    const displayEntryCards = entries.map(entry => {
       return (
-         <NavLink to={'/EntryDetail/'+entry.id}>
+         <NavLink to={'/EntryDetail/'+entry.id} onClick={handleClick}>
             <EntryCard key={entry.id} entry={entry} />
          </NavLink>
       )

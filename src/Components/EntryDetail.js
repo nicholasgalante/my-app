@@ -1,10 +1,11 @@
 import React from "react";
 import OptionBar from './OptionBar';
 
-function EntryDetail(){
+function EntryDetail({entry}){
    return(
       <div>
-         EntryDetail
+         {entry.title}
+         {entry.content}
          <OptionBar/> 
       </div>
    )
