@@ -10,7 +10,7 @@ function EntryEditor({ onUpdateEntry }) {
     fetch(`http://localhost:3000/entries/${id}`)
       .then((res) => res.json())
       .then((data) => setActiveEntry(data));
-  }, [activeEntry]);
+  }, []);
 
   if (!activeEntry) return <div>Select an Entry</div>;
 
