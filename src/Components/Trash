@@ -27,3 +27,25 @@
   //     onUpdateEntry(entryData)
   //     console.log("ENTRYDATA", entryData);
   //   }
+
+
+
+    // function getActiveEntry() {
+  //   return entries.find((entry) => entry.id === activeEntryID);
+  // }
+
+  // const entryDisplays = entries.map((entry) => {
+  //   return (
+  //     <Route exact path={"/Entry/" + entry.id}>
+  //       <EntryEditor
+  //         activeEntry={getActiveEntry()}
+  //         onAddEntry={onAddEntry}
+  //         onUpdateEntry={onUpdateEntry}
+  //       />
+  //     </Route>
+  //   );
+  // });
+
+  function onAddEntry(newEntry) {
+   setEntries([...entries, newEntry]);
+ }

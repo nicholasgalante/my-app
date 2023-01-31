@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router";
+import { Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import EntriesList from "./EntriesList";
-import EntryDetail from "./EntryDetail";
 import EntryEditor from "./EntryEditor";
 
 function App() {
   const [entries, setEntries] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-  const [activeEntry, setActiveEntry] = useState({
-      id: "",
-      date: "",
-      title: "",
-      content: "",
-  });
 
   useEffect(() => {
     fetch("http://localhost:3000/entries")
@@ -21,16 +14,12 @@ function App() {
       .then((data) => setEntries(data));
   }, []);
 
-  function onAddEntry(newEntry) {
-    setEntries([...entries, newEntry]);
-  }
-
   function onSearch(value) {
     setSearchValue(value);
   }
 
   function onUpdateEntry(updatedEntry) {
-    console.log("UPDATEDENTRY:", updatedEntry)
+    console.log("UPDATEDENTRY:", updatedEntry);
     const updatedEntries = entries.map((entry) => {
       if (entry.id === updatedEntry.id) {
         return updatedEntry;
@@ -47,40 +36,19 @@ function App() {
     );
   });
 
-  const displayEntryDetails = entries.map((entry) => {
-    return (
-      <Route exact path={"/Entry/" + entry.id}>
-        <EntryDetail entry={entry} />
-      </Route>
-    );
-  });
-
-  function handleEntrySelect(entry) {
-    setActiveEntry(entry);
+  function addNewEntry() {
+    console.log("entry added");
   }
 
   return (
     <div>
-      <NavBar />
-      <EntriesList
-        entries={displayedEntries}
-        onSearch={onSearch}
-        handleEntrySelect={handleEntrySelect}
-      />
-      <EntryEditor
-        activeEntry={activeEntry}
-        onAddEntry={onAddEntry}
-        onUpdateEntry={onUpdateEntry}
-      />
-
-      {/* <NavBar />
-      <EntriesList entries={displayedEntries} onSearch={onSearch} />
-      <Switch>
-        <Route exact path="/NewEntry">
-          <EntryEditor onAddEntry={onAddEntry} />
-        </Route>
-        {displayEntryDetails}
-      </Switch> */}
+      <NavBar addNewEntry={addNewEntry} />
+      <Route path="/">
+        <EntriesList entries={displayedEntries} onSearch={onSearch} />
+      </Route>
+      <Route path="/Entry/:id">
+        <EntryEditor onUpdateEntry={onUpdateEntry} />
+      </Route>
     </div>
   );
 }

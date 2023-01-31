@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-function EntryEditor({ onUpdateEntry, activeEntry }) {
+function EntryEditor({ onUpdateEntry }) {
+  const [activeEntry, setActiveEntry] = useState(null);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/entries/${id}`)
+      .then((res) => res.json())
+      .then((data) => setActiveEntry(data));
+  }, [activeEntry]);
+
+  if (!activeEntry) return <div>Select an Entry</div>;
 
   function onEditField(key, value) {
-   const date = new Date().toJSON();
-   onUpdateEntry({
+    const date = new Date().toJSON();
+    onUpdateEntry({
       ...activeEntry,
       [key]: value,
       last_updated: date,

@@ -1,13 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function NavBar() {
+function NavBar({addNewEntry}) {
   return (
     <div>
       JOURNAL
-      <NavLink to="/NewEntry">
-        <button>New Entry</button>
-      </NavLink>
+      <button onClick={addNewEntry}>New Entry</button>
       <button>New Category</button>
     </div>
   );
