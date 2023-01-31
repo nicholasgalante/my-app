@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 
-function Search({ entries, onSearch }) {
-   const [search, setSearch] = useState("")
+function Search({ onSearch }) {
+  function handleSearch(e) {
+    onSearch(e.target.value);
+  }
 
-   function handleSearch(e){
-      onSearch(e.target.value)
-   }
-
-   return (
-      <div>
-         <form>
-            <input type="text" placeholder="Search in Entries" onChange={handleSearch}></input>
-         </form>
-      </div>
-   )
+  return (
+    <div>
+      <form>
+        <input
+          type="text"
+          placeholder="Search in Entries"
+          onChange={handleSearch}
+        ></input>
+      </form>
+    </div>
+  );
 }
 
 export default Search;

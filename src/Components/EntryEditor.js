@@ -1,60 +1,40 @@
-import React, {useState} from "react";
+import React from "react";
 
-function EntryEditor({onAddEntry}) {
-   const [formData, setFormData] = useState({
-      title : "",
-      content : "",
-      date : "",
-   })
+function EntryEditor({ onUpdateEntry, activeEntry }) {
 
-   function handleChange(event){
-      const date = new Date().toJSON().slice(0, 10);;
-      setFormData({
-         ...formData,
-         [event.target.name]: event.target.value,
-         date: date,
-       });
-      console.log(formData) //CONSOLE LOG DATA
-   }
+  function onEditField(key, value) {
+   const date = new Date().toJSON();
+   onUpdateEntry({
+      ...activeEntry,
+      [key]: value,
+      last_updated: date,
+    });
+  }
 
-   function handleSubmit(event){
-      event.preventDefault();
-      fetch("http://localhost:3000/entries", {
-         method: "POST",
-         headers: { "Content-Type": "application/json", },
-         body: JSON.stringify({
-           "title": formData.title,
-           "content": formData.content,
-           "date": formData.date
-         })
-       })
-         .then(res => res.json())
-         .then(newEntry => onAddEntry(newEntry))
-       event.reset()
-   }
-
-   return (
-      <div>
-         <form id="entryEditor">
-            <input
-               type="text"
-               name="title"
-               onChange={handleChange}
-               value={formData.title}
-               placeholder="Enter a Title..."
-            />
-            <textarea id="entryEditor"
-               name="content"
-               rows="15"
-               cols="100"
-               onChange={handleChange}
-               value={formData.content}
-               placeholder="">
-            </textarea>
-            <button type="submit" onClick={handleSubmit}>Save Entry</button>
-         </form>
-      </div>
-   )
+  return (
+    <div>
+      <form id="entryEditor">
+        <input
+          type="text"
+          name="title"
+          onChange={(e) => onEditField("title", e.target.value)}
+          defaultValue={activeEntry.title}
+          placeholder="Enter a Title..."
+        />
+        <textarea
+          id="content"
+          name="content"
+          rows="15"
+          cols="100"
+          onChange={(e) => onEditField("content", e.target.value)}
+          defaultValue={activeEntry.content}
+          onBlur={() => console.log("lost focus")}
+          placeholder=""
+        ></textarea>
+        <button type="submit">Save Entry</button>
+      </form>
+    </div>
+  );
 }
 
 export default EntryEditor;

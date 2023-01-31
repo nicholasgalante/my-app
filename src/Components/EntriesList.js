@@ -1,29 +1,25 @@
 import React from "react";
 import EntryCard from "./EntryCard";
 import Search from "./Search";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-function EntriesList({ entries, onSearch }) {
-
-   function handleClick(entry){
-      console.log(entry)
-   }
-
-   const displayEntryCards = entries.map(entry => {
-      return (
-         <NavLink to={'/EntryDetail/'+entry.id} onClick={handleClick}>
-            <EntryCard key={entry.id} entry={entry} />
-         </NavLink>
-      )
-   })
-
-   return (
-      <div>
-         <Search entries={entries} onSearch={onSearch}/>
-         {displayEntryCards}
-      </div>
-   )
+function EntriesList({ entries, handleEntrySelect, onSearch }) {
+  return (
+    <div>
+      <Search entries={entries} onSearch={onSearch} />
+      {entries.map((entry) => {
+        return (
+          <NavLink
+            key={entry.id}
+            to={"/Entry/" + entry.id}
+            onClick={() => handleEntrySelect(entry)}
+          >
+            <EntryCard entry={entry} />
+          </NavLink>
+        );
+      })}
+    </div>
+  );
 }
 
 export default EntriesList;
-
