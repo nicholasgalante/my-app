@@ -37,8 +37,7 @@ function App() {
           ...updatedEntry,
         }),
       }).then((res) => res.json());
-    }, 3000);
-
+    }, 0);
     setEntries(updatedEntries);
   }
 
@@ -56,7 +55,7 @@ function App() {
   const displayEntryEditors = entries.map((entry) => {
     return (
       <Route key={entry.id} path={`/entries/${entry.id}`}>
-        <EntryEditor entry={entry} onUpdateEntry={onUpdateEntry} />
+        <EntryEditor activeEntry={entry} onUpdateEntry={onUpdateEntry} />
       </Route>
     );
   });

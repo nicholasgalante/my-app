@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
-function EntryEditor({ onUpdateEntry, entry }) {
-  const [activeEntry, setActiveEntry] = useState(null);
-  
-  useEffect(() => {
-    fetch(`http://localhost:3000/entries/${entry.id}`)
-      .then((res) => res.json())
-      .then((data) => setActiveEntry(data));
-  }, []);
+function EntryEditor({ onUpdateEntry, activeEntry }) {
+//   const [activeEntry, setActiveEntry] = useState(null);
+
+//   useEffect(() => {
+//     fetch(`http://localhost:3000/entries/${entry.id}`)
+//       .then((res) => res.json())
+//       .then((data) => setActiveEntry(data));
+//   }, []);
 
   if (!activeEntry) return <div>Select an Entry</div>;
 
