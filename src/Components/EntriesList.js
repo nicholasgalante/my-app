@@ -8,11 +8,10 @@ function EntriesList({ entries, onSearch }) {
     <div>
       <Search entries={entries} onSearch={onSearch} />
         {entries.map((entry) => { 
-         
           return (
             <NavLink
               key={entry.id}
-              to={"/Entry/" + entry.id} 
+              to={"/entries/" + entry.id} 
             >
               <EntryCard entry={entry} />
             </NavLink>

@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-function EntryEditor({ onUpdateEntry }) {
-  const [activeEntry, setActiveEntry] = useState(null);
-
-  const { id } = useParams();
-
-  useEffect(() => {
-    fetch(`http://localhost:3000/entries/${id}`)
-      .then((res) => res.json())
-      .then((data) => setActiveEntry(data));
-  }, []);
+function EntryEditor({ onUpdateEntry, activeEntry }) {
 
   if (!activeEntry) return <div>Select an Entry</div>;
 

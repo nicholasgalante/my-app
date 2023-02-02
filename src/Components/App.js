@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import NavBar from "./NavBar";
 import EntriesList from "./EntriesList";
 import EntryEditor from "./EntryEditor";
@@ -40,15 +40,27 @@ function App() {
     console.log("entry added");
   }
 
+  const displayEntryEditors = entries.map((entry) => {
+    console.log(entry.id)
+    return (
+      <Route key={entry.id} path={`/entries/${entry.id}`}>
+        <EntryEditor activeEntry={entry} onUpdateEntry={onUpdateEntry} />
+      </Route>
+    );
+  });
+
   return (
     <div>
       <NavBar addNewEntry={addNewEntry} />
       <Route path="/">
         <EntriesList entries={displayedEntries} onSearch={onSearch} />
       </Route>
-      <Route path="/Entry/:id">
+      <Switch>
+        {displayEntryEditors}
+      </Switch>
+      {/* <Route path="/entries/:id">
         <EntryEditor onUpdateEntry={onUpdateEntry} />
-      </Route>
+      </Route> */}
     </div>
   );
 }
