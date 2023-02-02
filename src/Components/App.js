@@ -7,6 +7,7 @@ import EntryEditor from "./EntryEditor";
 function App() {
   const [entries, setEntries] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [patchTimer, setPatchTimer] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:3000/entries")
@@ -25,9 +26,9 @@ function App() {
       }
       return entry;
     });
-
-    setTimeout(() => {
-      console.log("FETCHING!");
+    clearTimeout(patchTimer);
+    const newTimer = setTimeout(() => {
+      console.log("PATCHING!");
       fetch(`http://localhost:3000/entries/${updatedEntry.id}`, {
         method: "PATCH",
         headers: {
@@ -37,7 +38,8 @@ function App() {
           ...updatedEntry,
         }),
       }).then((res) => res.json());
-    }, 0);
+    }, 1000);
+    setPatchTimer(newTimer);
     setEntries(updatedEntries);
   }
 
