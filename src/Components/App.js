@@ -19,14 +19,27 @@ function App() {
   }
 
   function onUpdateEntry(updatedEntry) {
-    console.log("UPDATEDENTRY:", updatedEntry);
     const updatedEntries = entries.map((entry) => {
       if (entry.id === updatedEntry.id) {
         return updatedEntry;
       }
       return entry;
     });
-    console.log(updatedEntries);
+
+    setTimeout(() => {
+      console.log("FETCHING!");
+      fetch(`http://localhost:3000/entries/${updatedEntry.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...updatedEntry,
+        }),
+      }).then((res) => res.json());
+    }, 3000);
+
+    setEntries(updatedEntries);
   }
 
   const displayedEntries = entries.filter((entry) => {
@@ -41,10 +54,9 @@ function App() {
   }
 
   const displayEntryEditors = entries.map((entry) => {
-    console.log(entry.id)
     return (
       <Route key={entry.id} path={`/entries/${entry.id}`}>
-        <EntryEditor activeEntry={entry} onUpdateEntry={onUpdateEntry} />
+        <EntryEditor entry={entry} onUpdateEntry={onUpdateEntry} />
       </Route>
     );
   });
@@ -55,9 +67,7 @@ function App() {
       <Route path="/">
         <EntriesList entries={displayedEntries} onSearch={onSearch} />
       </Route>
-      <Switch>
-        {displayEntryEditors}
-      </Switch>
+      <Switch>{displayEntryEditors}</Switch>
       {/* <Route path="/entries/:id">
         <EntryEditor onUpdateEntry={onUpdateEntry} />
       </Route> */}

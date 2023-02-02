@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-function EntryEditor({ onUpdateEntry, activeEntry }) {
+function EntryEditor({ onUpdateEntry, entry }) {
+  const [activeEntry, setActiveEntry] = useState(null);
+  
+  useEffect(() => {
+    fetch(`http://localhost:3000/entries/${entry.id}`)
+      .then((res) => res.json())
+      .then((data) => setActiveEntry(data));
+  }, []);
 
   if (!activeEntry) return <div>Select an Entry</div>;
 
@@ -12,6 +19,35 @@ function EntryEditor({ onUpdateEntry, activeEntry }) {
       [key]: value,
       last_updated: date,
     });
+
+   //  setTimeout(()=>{
+   //    console.log("FETCHING!")
+   //    fetch(`http://localhost:3000/entries/${activeEntry.id}`, {
+   //    method: "PATCH",
+   //    headers: {
+   //      "Content-Type": "application/json",
+   //    },
+   //    body: JSON.stringify({
+   //      ...activeEntry,
+   //    }),
+   //  })
+   //    .then((res) => res.json())
+   //    .then((updatedItem) => onUpdateEntry(updatedItem));
+   //  }, 3000)
+  }
+
+  function handleSubmit() {
+    fetch(`http://localhost:3000/entries/${activeEntry.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...activeEntry,
+      }),
+    })
+      .then((res) => res.json())
+      .then((updatedItem) => onUpdateEntry(updatedItem));
   }
 
   return (
@@ -31,7 +67,6 @@ function EntryEditor({ onUpdateEntry, activeEntry }) {
           cols="100"
           onChange={(e) => onEditField("content", e.target.value)}
           defaultValue={activeEntry.content}
-          onBlur={() => console.log("lost focus")}
           placeholder=""
         ></textarea>
         <button type="submit">Save Entry</button>
