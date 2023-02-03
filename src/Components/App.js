@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import NavBar from "./NavBar";
 import EntriesList from "./EntriesList";
 import EntryEditor from "./EntryEditor";
@@ -15,8 +15,12 @@ function App() {
       .then((data) => setEntries(data));
   }, []);
 
-  function onSearch(value) {
-    setSearchValue(value);
+  const history = useHistory();
+
+  function onAddEntry(newEntry) {
+    console.log(newEntry);
+    setEntries([...entries, newEntry]);
+    history.push(`/entries/${newEntry.id}`);
   }
 
   function onUpdateEntry(updatedEntry) {
@@ -43,16 +47,23 @@ function App() {
     setEntries(updatedEntries);
   }
 
+  function onDelete(deletedEntry) {
+    const updatedEntries = entries.filter((entry) => {
+      return entry.id !== deletedEntry.id;
+    });
+    setEntries(updatedEntries);
+  }
+
+  function onSearch(value) {
+    setSearchValue(value);
+  }
+
   const displayedEntries = entries.filter((entry) => {
     return (
       entry.content.toLowerCase().includes(searchValue.toLowerCase()) ||
       entry.title.toLowerCase().includes(searchValue.toLowerCase())
     );
   });
-
-  function addNewEntry() {
-    console.log("entry added");
-  }
 
   const displayEntryEditors = entries.map((entry) => {
     return (
@@ -64,14 +75,15 @@ function App() {
 
   return (
     <div>
-      <NavBar addNewEntry={addNewEntry} />
+      <NavBar onAddEntry={onAddEntry} />
       <Route path="/">
-        <EntriesList entries={displayedEntries} onSearch={onSearch} />
+        <EntriesList
+          entries={displayedEntries}
+          onSearch={onSearch}
+          onDelete={onDelete}
+        />
       </Route>
       <Switch>{displayEntryEditors}</Switch>
-      {/* <Route path="/entries/:id">
-        <EntryEditor onUpdateEntry={onUpdateEntry} />
-      </Route> */}
     </div>
   );
 }

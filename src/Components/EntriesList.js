@@ -1,22 +1,14 @@
 import React from "react";
 import EntryCard from "./EntryCard";
 import Search from "./Search";
-import { NavLink } from "react-router-dom";
 
-function EntriesList({ entries, onSearch }) {
+function EntriesList({ entries, onSearch, onDelete }) {
   return (
     <div>
       <Search entries={entries} onSearch={onSearch} />
-        {entries.map((entry) => { 
-          return (
-            <NavLink
-              key={entry.id}
-              to={"/entries/" + entry.id} 
-            >
-              <EntryCard entry={entry} />
-            </NavLink>
-          );
-        })}
+      {entries.map((entry) => {
+        return <EntryCard key={entry.id} entry={entry} onDelete={onDelete} />;
+      })}
     </div>
   );
 }
