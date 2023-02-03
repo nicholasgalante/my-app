@@ -1,15 +1,6 @@
-import React, { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
+import React from "react";
 
 function EntryEditor({ onUpdateEntry, activeEntry }) {
-//   const [activeEntry, setActiveEntry] = useState(null);
-
-//   useEffect(() => {
-//     fetch(`http://localhost:3000/entries/${entry.id}`)
-//       .then((res) => res.json())
-//       .then((data) => setActiveEntry(data));
-//   }, []);
-
   if (!activeEntry) return <div>Select an Entry</div>;
 
   function onEditField(key, value) {
@@ -19,35 +10,14 @@ function EntryEditor({ onUpdateEntry, activeEntry }) {
       [key]: value,
       last_updated: date,
     });
-
-   //  setTimeout(()=>{
-   //    console.log("FETCHING!")
-   //    fetch(`http://localhost:3000/entries/${activeEntry.id}`, {
-   //    method: "PATCH",
-   //    headers: {
-   //      "Content-Type": "application/json",
-   //    },
-   //    body: JSON.stringify({
-   //      ...activeEntry,
-   //    }),
-   //  })
-   //    .then((res) => res.json())
-   //    .then((updatedItem) => onUpdateEntry(updatedItem));
-   //  }, 3000)
   }
 
-  function handleSubmit() {
-    fetch(`http://localhost:3000/entries/${activeEntry.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...activeEntry,
-      }),
-    })
-      .then((res) => res.json())
-      .then((updatedItem) => onUpdateEntry(updatedItem));
+  function handleKeyPress(e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const content = document.querySelector("#content");
+      content.focus();
+    }
   }
 
   return (
@@ -56,9 +26,11 @@ function EntryEditor({ onUpdateEntry, activeEntry }) {
         <input
           type="text"
           name="title"
+          autoFocus
           onChange={(e) => onEditField("title", e.target.value)}
           defaultValue={activeEntry.title}
           placeholder="Enter a Title..."
+          onKeyPress={handleKeyPress}
         />
         <textarea
           id="content"
@@ -69,7 +41,6 @@ function EntryEditor({ onUpdateEntry, activeEntry }) {
           defaultValue={activeEntry.content}
           placeholder=""
         ></textarea>
-        <button type="submit">Save Entry</button>
       </form>
     </div>
   );
