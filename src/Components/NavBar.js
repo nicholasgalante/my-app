@@ -22,13 +22,19 @@ function NavBar({ onAddEntry, entries, onSearch, onDelete }) {
   }
 
   return (
-    <div>
-      JOURNAL
-      <button onClick={handleAddEntry}>New Entry</button>
-      <Search entries={entries} onSearch={onSearch} />
-      {entries.map((entry) => {
-        return <EntryCard key={entry.id} entry={entry} onDelete={onDelete} />;
-      })}
+    <div className="app-sidebar">
+      <div className="app-sidebar-header">
+        <h1>MY JOURNAL</h1>
+        <button onClick={handleAddEntry}>New Entry</button>
+      </div>
+      <div className="app-side-bar-search">
+        <Search entries={entries} onSearch={onSearch} />
+      </div>
+      <div className="app-sidebar-notes">
+        {entries.map((entry) => {
+          return <EntryCard key={entry.id} entry={entry} onDelete={onDelete} />;
+        })}
+      </div>
     </div>
   );
 }

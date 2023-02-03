@@ -2,8 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 function EntryCard({ entry, onDelete }) {
- 
-   function handleDelete() {
+  function handleDelete() {
     fetch(`http://localhost:3000/entries/${entry.id}`, {
       method: "DELETE",
     })
@@ -13,15 +12,20 @@ function EntryCard({ entry, onDelete }) {
 
   const { date, title } = entry;
   return (
-    <div>
+    <div className="app-sidebar-note">
       <NavLink key={entry.id} to={"/entries/" + entry.id}>
-        {title}
-        <br />
-        {date}
+        <div className="sidebar-note-title">
+          <strong>
+            {title}
+          </strong>
+          <button onClick={handleDelete}>Delete</button>
+        </div>
+        <small className="note-meta">{date}</small>
       </NavLink>
-      <button onClick={handleDelete}>x</button>
     </div>
   );
 }
 
 export default EntryCard;
+
+

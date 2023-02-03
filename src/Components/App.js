@@ -73,7 +73,7 @@ function App() {
   });
 
   return (
-    <div>
+    <div className="App">
       <Route path="/">
         <NavBar
           onAddEntry={onAddEntry}
