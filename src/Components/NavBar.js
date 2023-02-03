@@ -1,6 +1,8 @@
 import React from "react";
+import Search from "./Search";
+import EntryCard from "./EntryCard";
 
-function NavBar({ onAddEntry }) {
+function NavBar({ onAddEntry, entries, onSearch, onDelete }) {
   function handleAddEntry() {
     const date = new Date().toJSON();
     const entryData = {
@@ -23,6 +25,10 @@ function NavBar({ onAddEntry }) {
     <div>
       JOURNAL
       <button onClick={handleAddEntry}>New Entry</button>
+      <Search entries={entries} onSearch={onSearch} />
+      {entries.map((entry) => {
+        return <EntryCard key={entry.id} entry={entry} onDelete={onDelete} />;
+      })}
     </div>
   );
 }

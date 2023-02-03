@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import NavBar from "./NavBar";
-import EntriesList from "./EntriesList";
 import EntryEditor from "./EntryEditor";
 
 function App() {
@@ -75,9 +74,9 @@ function App() {
 
   return (
     <div>
-      <NavBar onAddEntry={onAddEntry} />
       <Route path="/">
-        <EntriesList
+        <NavBar
+          onAddEntry={onAddEntry}
           entries={displayedEntries}
           onSearch={onSearch}
           onDelete={onDelete}

@@ -1,7 +1,7 @@
 import React from "react";
 
 function EntryEditor({ onUpdateEntry, activeEntry }) {
-  if (!activeEntry) return <div>Select an Entry</div>;
+  if (!activeEntry) return <div className="no-active-note">Select an Entry</div>;
 
   function onEditField(key, value) {
     const date = new Date().toJSON();
@@ -21,7 +21,8 @@ function EntryEditor({ onUpdateEntry, activeEntry }) {
   }
 
   return (
-    <div>
+    <div className="app-main">
+      <div className="app-main-note-edit">
       <form id="entryEditor">
         <input
           type="text"
@@ -42,6 +43,7 @@ function EntryEditor({ onUpdateEntry, activeEntry }) {
           placeholder=""
         ></textarea>
       </form>
+      </div>
     </div>
   );
 }
