@@ -1,10 +1,17 @@
 import React from "react";
 import Search from "./Search";
 import EntryCard from "./EntryCard";
+import { NavLink } from "react-router-dom";
 
 function NavBar({ onAddEntry, entries, onSearch, onDelete }) {
   function handleAddEntry() {
-    const date = new Date().toJSON();
+    const date = new Date().toLocaleString("en-us", {
+      weekday: "long",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+
     const entryData = {
       title: "",
       content: "",
@@ -22,15 +29,17 @@ function NavBar({ onAddEntry, entries, onSearch, onDelete }) {
   }
 
   return (
-    <div className="app-sidebar">
-      <div className="app-sidebar-header">
-        <h1>MY JOURNAL</h1>
+    <div className="app-navbar">
+      <div className="app-navbar-header">
+        <NavLink to={"/"}>
+         <h1>My Journal</h1>
+         </NavLink>
         <button onClick={handleAddEntry}>New Entry</button>
       </div>
-      <div className="app-side-bar-search">
+      <div className="app-navbar-search">
         <Search entries={entries} onSearch={onSearch} />
       </div>
-      <div className="app-sidebar-notes">
+      <div className="app-navbar-entries">
         {entries.map((entry) => {
           return <EntryCard key={entry.id} entry={entry} onDelete={onDelete} />;
         })}

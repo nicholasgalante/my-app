@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
 /* GLOBAL STYLES */
 
 body,
@@ -25,7 +32,7 @@ button {
   font-size: inherit;
   font-family: inherit;
   cursor: pointer;
-  color: #08c;
+  color: #5183f5;
 }
 button:hover {
   color: #04c;
@@ -35,64 +42,82 @@ button:hover {
   display: flex;
 }
 
-/* SIDEBAR STYLES */
+/* NAVBAR STYLES */
 
-.app-sidebar {
+.app-navbar {
   width: 30%;
   height: 100vh;
   border-right: 1px solid #ddd;
+  background-color: #2d2d2d;
+  color: #fff
 }
 
-.app-sidebar-header {
+.app-navbar-header {
   display: flex;
   justify-content: space-between;
   padding: 25px;
 }
-.app-sidebar-header h1 {
+.app-navbar-header h1 {
   margin: 0;
+  color: white
 }
 
-.app-sidebar-notes {
+.app-navbar-entries {
   height: calc(100vh - 78px);
   overflow-y: scroll;
 }
-.app-sidebar-note {
-  padding: 25px;
+.app-navbar-entry {
+  padding: 15px;
   cursor: pointer;
 }
-.sidebar-note-title {
+
+.app-navbar-data {
   display: flex;
-  justify-content: space-between;
-}
-.app-sidebar-note button {
-  color: crimson;
-}
-.app-sidebar-note p {
-  margin: 10px 0;
-}
-.app-sidebar-note small {
-  display: block;
-  color: #999;
+  padding-bottom: 5px;
 }
 
-.app-sidebar-note:hover {
-  background: #ddd;
+.navbar-entry-title {
+  flex: 1;
+  color: white;
 }
-.app-sidebar-note.active,
-.app-sidebar-note.active small {
-  background: #08c;
+.app-navbar-entry button {
+  color: white;
+  justify-self: end;
+}
+.app-navbar-entry p {
+  margin: 10px 0;
+}
+.app-navbar-entry small {
+  display: block;
+  color: #7A7A7A;
+}
+
+.app-navbar-entry:hover {
+  background: #3a3a3a;;
+}
+.app-navbar-entry.active,
+.app-navbar-entry.active small {
+  background: #5183f5;
   color: white;
 }
 
-/* NOTE EDITOR/PREVIEW (MAIN) STYLES */
+.app-navbar-search {
+  padding: 15px;
+  width: 100%
+}
+
+.app-navbar-search input{
+  width: 100%;
+}
+
+/* entry EDITOR/PREVIEW (MAIN) STYLES */
 
 .app-main {
   width: 70%;
   height: 100vh;
 }
-.app-main-note-edit,
 
-.no-active-note {
+.no-active-entry {
   width: 70%;
   height: 100vh;
   line-height: 100vh;
@@ -102,24 +127,25 @@ button:hover {
 }
 
 /* Editing */
-.app-main-note-edit {
+.app-main-entry-edit {
   padding: 25px;
+  height: 100%
 }
 
-.app-main-note-edit input,
+.app-main-entry-edit input,
 textarea {
   display: block;
-  border: 1px solid #ddd;
+  border: 0px solid #ddd;
   margin-bottom: 20px;
   width: 100%;
-  height: calc(50vh - 130px);
+  height: calc(85vh);
   padding: 10px;
   resize: none;
   font-size: inherit;
   font-family: inherit;
 }
-.app-main-note-edit input {
-  height: 50px;
+.app-main-entry-edit input {
+  height: calc(5vh);
+  /* height: 50px; */
   font-size: 2rem;
 }
-

@@ -22,7 +22,7 @@ function EntryEditor({ onUpdateEntry, activeEntry }) {
 
   return (
     <div className="app-main">
-      <div className="app-main-note-edit">
+      <div className="app-main-entry-edit">
       <form id="entryEditor">
         <input
           type="text"
@@ -36,8 +36,6 @@ function EntryEditor({ onUpdateEntry, activeEntry }) {
         <textarea
           id="content"
           name="content"
-          rows="15"
-          cols="100"
           onChange={(e) => onEditField("content", e.target.value)}
           defaultValue={activeEntry.content}
           placeholder=""

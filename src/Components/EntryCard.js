@@ -11,21 +11,18 @@ function EntryCard({ entry, onDelete }) {
   }
 
   const { date, title } = entry;
+
   return (
-    <div className="app-sidebar-note">
+    <div className="app-navbar-entry">
       <NavLink key={entry.id} to={"/entries/" + entry.id}>
-        <div className="sidebar-note-title">
-          <strong>
-            {title}
-          </strong>
-          <button onClick={handleDelete}>Delete</button>
+        <div className="app-navbar-data">
+          <div className="navbar-entry-title">{title}</div>
+          <button onClick={handleDelete}>x</button>
         </div>
-        <small className="note-meta">{date}</small>
+        <small className="entry-meta">{date}</small>
       </NavLink>
     </div>
   );
 }
 
 export default EntryCard;
-
-
