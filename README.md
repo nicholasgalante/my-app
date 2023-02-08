@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# My Journal 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React application that allows users to create journal entries and search through previous entries. The app is designed to provide an easy and user-friendly interface to help users keep track of their thoughts and memories.
 
-## Available Scripts
+## Features
+***
+* Create a journal entry with a title and text content 
+* Search and filter through previous entries
+* Follow custom URL to access specific entries
+* Delete journal entries
 
-In the project directory, you can run:
 
-### `npm start`
+## React Concepts Used
+***
+* Components: The app is built using a combination of functional and class-based components to create a reusable and modular structure.
+* State: The state of the app is managed using React state to store the current journal entries and search query.
+* Props: Props are used to pass data between components, allowing for a flexible and scalable architecture.
+* Event Handlers: Event handlers are used to handle user interactions with the app, such as submitting a new journal entry or searching through previous entries.
+* Route, Switch, and NavLink from react-router: These are used to provide a dynamic and flexible routing system for the application, allowing for multiple pages and navigation between different sections of the app.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Vanilla Javascript Concepts Used
+***
+* Fetch requests (post, patch, and delete): These are used to interact with an API, allowing the app to retrieve, update, and delete data stored on a server. Currently, this data is saved to a JSON file stored in the repository.
+* Filter: The filter method is used to filter an array of data based on certain criteria, such as searching for journal entries that match a certain title.
+* Map: The map method is used to transform an array of data into a new array, such as transforming an array of journal entries into an array of formatted HTML elements.
 
-### `npm test`
+## How to run the app
+***
+1. Clone the repository: `git clone https://github.com/nicholasgalante/my-app.git`
+2. Install the dependencies: `npm install`
+3. Start the React development server: `npm start`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Conclusion
+***
+This journal app is a simple application that demonstrates the core concepts of React. By using components, state, props, and event handlers, the app provides a solid foundation for building more complex React applications.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
