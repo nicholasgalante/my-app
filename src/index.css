@@ -42,9 +42,9 @@ button:hover {
   display: flex;
 }
 
-/* NAVBAR STYLES */
+/* entry-container STYLES */
 
-.app-navbar {
+.app-entry-container {
   width: 30%;
   height: 100vh;
   border-right: 1px solid #ddd;
@@ -52,61 +52,61 @@ button:hover {
   color: #fff
 }
 
-.app-navbar-header {
+.app-entry-container-header {
   display: flex;
   justify-content: space-between;
   padding: 25px;
 }
-.app-navbar-header h1 {
+.app-entry-container-header h1 {
   margin: 0;
   color: white
 }
 
-.app-navbar-entries {
+.app-entry-container-entries {
   height: calc(100vh - 78px);
   overflow-y: scroll;
 }
-.app-navbar-entry {
+.app-entry-container-entry {
   padding: 15px;
   cursor: pointer;
 }
 
-.app-navbar-data {
+.app-entry-container-data {
   display: flex;
   padding-bottom: 5px;
 }
 
-.navbar-entry-title {
+.entry-container-entry-title {
   flex: 1;
   color: white;
 }
-.app-navbar-entry button {
+.app-entry-container-entry button {
   color: white;
   justify-self: end;
 }
-.app-navbar-entry p {
+.app-entry-container-entry p {
   margin: 10px 0;
 }
-.app-navbar-entry small {
+.app-entry-container-entry small {
   display: block;
   color: #7A7A7A;
 }
 
-.app-navbar-entry:hover {
+.app-entry-container-entry:hover {
   background: #3a3a3a;;
 }
-.app-navbar-entry.active,
-.app-navbar-entry.active small {
+.app-entry-container-entry.active,
+.app-entry-container-entry.active small {
   background: #5183f5;
   color: white;
 }
 
-.app-navbar-search {
+.app-entry-container-search {
   padding: 15px;
   width: 100%
 }
 
-.app-navbar-search input{
+.app-entry-container-search input{
   width: 100%;
 }
 

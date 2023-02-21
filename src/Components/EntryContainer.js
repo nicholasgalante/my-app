@@ -3,7 +3,7 @@ import Search from "./Search";
 import EntryCard from "./EntryCard";
 import { NavLink } from "react-router-dom";
 
-function NavBar({ onAddEntry, entries, onSearch, onDelete }) {
+function EntryContainer({ onAddEntry, entries, onSearch, onDelete }) {
   function handleAddEntry() {
     const date = new Date().toLocaleString("en-us", {
       weekday: "long",
@@ -29,17 +29,17 @@ function NavBar({ onAddEntry, entries, onSearch, onDelete }) {
   }
 
   return (
-    <div className="app-navbar">
-      <div className="app-navbar-header">
+    <div className="app-entry-container">
+      <div className="app-entry-container-header">
         <NavLink to={"/"}>
          <h1>My Journal</h1>
          </NavLink>
         <button onClick={handleAddEntry}>New Entry</button>
       </div>
-      <div className="app-navbar-search">
+      <div className="app-entry-container-search">
         <Search entries={entries} onSearch={onSearch} />
       </div>
-      <div className="app-navbar-entries">
+      <div className="app-entry-container-entries">
         {entries.map((entry) => {
           return <EntryCard key={entry.id} entry={entry} onDelete={onDelete} />;
         })}
@@ -48,4 +48,4 @@ function NavBar({ onAddEntry, entries, onSearch, onDelete }) {
   );
 }
 
-export default NavBar;
+export default EntryContainer;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
-import NavBar from "./NavBar";
+import EntryContainer from "./EntryContainer";
 import EntryEditor from "./EntryEditor";
 
 function App() {
@@ -17,7 +17,6 @@ function App() {
   const history = useHistory();
 
   function onAddEntry(newEntry) {
-    console.log(newEntry);
     setEntries([...entries, newEntry]);
     history.push(`/entries/${newEntry.id}`);
   }
@@ -31,7 +30,6 @@ function App() {
     });
     clearTimeout(patchTimer);
     const newTimer = setTimeout(() => {
-      console.log("PATCHING!");
       fetch(`http://localhost:3000/entries/${updatedEntry.id}`, {
         method: "PATCH",
         headers: {
@@ -75,7 +73,7 @@ function App() {
   return (
     <div className="App">
       <Route path="/">
-        <NavBar
+        <EntryContainer
           onAddEntry={onAddEntry}
           entries={displayedEntries}
           onSearch={onSearch}

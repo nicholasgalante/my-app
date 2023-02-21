@@ -1,6 +1,7 @@
 import React from "react";
 
 function EntryEditor({ onUpdateEntry, activeEntry }) {
+  
   if (!activeEntry) return <div className="no-active-note">Select an Entry</div>;
 
   function onEditField(key, value) {

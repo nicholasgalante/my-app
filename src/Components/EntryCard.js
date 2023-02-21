@@ -13,10 +13,10 @@ function EntryCard({ entry, onDelete }) {
   const { date, title } = entry;
 
   return (
-    <div className="app-navbar-entry">
+    <div className="app-entry-container-entry">
       <NavLink key={entry.id} to={"/entries/" + entry.id}>
-        <div className="app-navbar-data">
-          <div className="navbar-entry-title">{title}</div>
+        <div className="app-entry-container-data">
+          <div className="entry-container-entry-title">{title}</div>
           <button onClick={handleDelete}>x</button>
         </div>
         <small className="entry-meta">{date}</small>
