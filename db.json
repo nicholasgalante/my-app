@@ -3,23 +3,23 @@
     {
       "id": 1,
       "date": "Sunday, Jan 1, 2023",
-      "title": "Happy New Years!",
+      "title": "Happy New Years! ",
       "content": "It is my goal to exercise more and eat healthier in the new year. I want to make it to the gym three times this week! ",
-      "last_updated": "2023-02-17T22:47:21.899Z"
+      "last_updated": "2023-02-24T15:06:40.634Z"
     },
     {
       "id": 2,
       "date": "Tuesday, Jan 3, 2023",
       "title": "First Day Back at Work",
       "content": "It was a tough first day back at work after the holidays, but I'm looking forward to the new year and all the possibilities it holds. ",
-      "last_updated": "2023-02-03T15:55:13.555Z"
+      "last_updated": "2023-02-26T18:14:49.413Z"
     },
     {
       "id": 3,
       "date": "Friday, Jan 6, 2023",
-      "title": "Weekend Adventure",
-      "content": "I went hiking in the mountains with some friends and it was a beautiful and refreshing experience.",
-      "last_updated": "2023-02-02T02:06:15.824Z"
+      "title": "Weekend Adventure ",
+      "content": "I went hiking in the mountains with some friends and it was a beautiful and refreshing experience.  ",
+      "last_updated": "2023-02-26T18:49:53.948Z"
     },
     {
       "id": 4,
@@ -32,8 +32,15 @@
       "id": 5,
       "date": "Thursday, Jan 12, 2023",
       "title": "Quality Time with Family",
-      "content": "I had a great day spending time with my family. We went out to lunch and had a fun day together. I'm grateful for their love and support. sdsfdsf",
-      "last_updated": "2023-02-17T22:50:09.207Z"
+      "content": "I had a great day spending time with my family. We went out to lunch and had a fun day together. I'm grateful for their love and support. \n",
+      "last_updated": "2023-02-26T18:15:17.802Z"
+    },
+    {
+      "title": "New title",
+      "content": "",
+      "date": "Friday, Feb 24, 2023",
+      "last_updated": "2023-02-24T15:07:51.899Z",
+      "id": 6
     }
   ]
 }

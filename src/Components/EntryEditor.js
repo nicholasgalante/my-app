@@ -1,47 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 
 function EntryEditor({ onUpdateEntry, activeEntry }) {
-  
-  if (!activeEntry) return <div className="no-active-note">Select an Entry</div>;
+  const [formData, setFormData] = useState();
 
-  function onEditField(key, value) {
+  // if (!activeEntry)
+  //   return <div className="no-active-note">Select an Entry</div>;
+
+  function onEditField(e) {
     const date = new Date().toJSON();
-    onUpdateEntry({
+    setFormData({
       ...activeEntry,
-      [key]: value,
+      [e.target.name]: e.target.value,
       last_updated: date,
     });
   }
 
-  function handleKeyPress(e) {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      const content = document.querySelector("#content");
-      content.focus();
-    }
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(e.target)
+    fetch(`http://localhost:3000/entries/${formData.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...formData,
+      }),
+    }).then((res) => res.json())
+      .then((updatedEntry) => onUpdateEntry(updatedEntry));
   }
+
+  // function handleKeyPress(e) {
+  //   console.log("EVENT:", e.target)
+  //   if (e.key === "Enter") {
+  //     e.preventDefault();
+  //     e.target.focus();
+  //   }
+  // }
 
   return (
     <div className="app-main">
       <div className="app-main-entry-edit">
-      <form id="entryEditor">
-        <input
-          type="text"
-          name="title"
-          autoFocus
-          onChange={(e) => onEditField("title", e.target.value)}
-          defaultValue={activeEntry.title}
-          placeholder="Enter a Title..."
-          onKeyPress={handleKeyPress}
-        />
-        <textarea
-          id="content"
-          name="content"
-          onChange={(e) => onEditField("content", e.target.value)}
-          defaultValue={activeEntry.content}
-          placeholder=""
-        ></textarea>
-      </form>
+        <form id="entryEditor" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="title"
+            autoFocus
+            onChange={(e) => onEditField(e)}
+            defaultValue={activeEntry.title}
+            placeholder="Enter a Title..."
+            // onKeyPress={handleKeyPress}
+          />
+          <textarea
+            id="content"
+            name="content"
+            onChange={(e) => onEditField(e)}
+            defaultValue={activeEntry.content}
+            placeholder=""
+          ></textarea>
+          <button type="submit">Save Changes</button>
+        </form>
       </div>
     </div>
   );
