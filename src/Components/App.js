@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import EntryContainer from "./EntryContainer";
 import EntryEditor from "./EntryEditor";
+import EntryCreator from "./EntryCreator";
 
 function App() {
   const [entries, setEntries] = useState([]);
@@ -14,6 +15,10 @@ function App() {
   }, []);
 
   const history = useHistory();
+
+  function createNewEntry(){
+    history.push(`/entries/new-entry`)
+  }
 
   function onAddEntry(newEntry) {
     setEntries([...entries, newEntry]);
@@ -28,7 +33,7 @@ function App() {
       return entry;
     });
     setEntries(updatedEntries);
-    console.log(entries)
+    console.log(entries);
   }
 
   function onDelete(deletedEntry) {
@@ -61,13 +66,19 @@ function App() {
     <div className="App">
       <Route path="/">
         <EntryContainer
-          onAddEntry={onAddEntry}
+          // onAddEntry={onAddEntry}
+          createNewEntry={createNewEntry}
           entries={displayedEntries}
           onSearch={onSearch}
           onDelete={onDelete}
         />
       </Route>
-      <Switch>{displayEntryEditors}</Switch>
+      <Switch>
+        <Route path="/entries/new-entry">
+          <EntryCreator onAddEntry={onAddEntry}/>
+        </Route>
+        {displayEntryEditors}
+      </Switch>
     </div>
   );
 }
