@@ -45,7 +45,6 @@ function EntryCreator({ onAddEntry }) {
             autoFocus
             onChange={(e) => onEditField(e)}
             placeholder="Enter a Title..."
-            // onKeyPress={handleKeyPress}
           />
           <textarea
             id="content"
@@ -53,7 +52,7 @@ function EntryCreator({ onAddEntry }) {
             onChange={(e) => onEditField(e)}
             placeholder=""
           ></textarea>
-          <button type="submit">Save Changes</button>
+          <button type="submit">Save New Entry</button>
         </form>
       </div>
     </div>
