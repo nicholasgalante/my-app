@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory, useParams } from "react-router-dom";
 import EntryContainer from "./EntryContainer";
 import EntryEditor from "./EntryEditor";
 import EntryCreator from "./EntryCreator";
@@ -16,8 +16,8 @@ function App() {
 
   const history = useHistory();
 
-  function createNewEntry(){
-    history.push(`/entries/new-entry`)
+  function createNewEntry() {
+    history.push(`/entries/new`);
   }
 
   function onAddEntry(newEntry) {
@@ -41,6 +41,7 @@ function App() {
       return entry.id !== deletedEntry.id;
     });
     setEntries(updatedEntries);
+    history.push(``);
   }
 
   function onSearch(value) {
@@ -54,19 +55,10 @@ function App() {
     );
   });
 
-  const displayEntryEditors = entries.map((entry) => {
-    return (
-      <Route key={entry.id} path={`/entries/${entry.id}`}>
-        <EntryEditor activeEntry={entry} onUpdateEntry={onUpdateEntry} />
-      </Route>
-    );
-  });
-
   return (
     <div className="App">
       <Route path="/">
         <EntryContainer
-          // onAddEntry={onAddEntry}
           createNewEntry={createNewEntry}
           entries={displayedEntries}
           onSearch={onSearch}
@@ -74,10 +66,12 @@ function App() {
         />
       </Route>
       <Switch>
-        <Route path="/entries/new-entry">
-          <EntryCreator onAddEntry={onAddEntry}/>
+        <Route path="/entries/new">
+          <EntryCreator onAddEntry={onAddEntry} />
         </Route>
-        {displayEntryEditors}
+        <Route path="/entries/:id">
+          <EntryEditor onUpdateEntry={onUpdateEntry} />
+        </Route>
       </Switch>
     </div>
   );

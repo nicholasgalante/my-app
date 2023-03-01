@@ -21,7 +21,6 @@ body,
   height: 100vh;
   overflow: hidden;
   font-size: 16px;
-  background: url(https://www.toptal.com/designers/subtlepatterns/patterns/lightpaperfibers.png);
 }
 
 button {
@@ -47,6 +46,7 @@ button:hover {
 .app-entry-container {
   width: 30%;
   height: 100vh;
+  overflow: auto;
   border-right: 1px solid #ddd;
   background-color: #2d2d2d;
   color: #fff

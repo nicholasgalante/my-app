@@ -1,7 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-function EntryEditor({ onUpdateEntry, activeEntry }) {
+function EntryEditor({ onUpdateEntry }) {
+  const [activeEntry, setActiveEntry] = useState({});
   const [formData, setFormData] = useState();
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/entries/${id}`)
+      .then((res) => res.json())
+      .then(console.log("fetching!"))
+      .then((data) => setActiveEntry(data));
+  }, [id]);
 
   function onEditField(e) {
     const date = new Date().toJSON();
@@ -14,7 +25,7 @@ function EntryEditor({ onUpdateEntry, activeEntry }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(e.target)
+    console.log(e.target);
     fetch(`http://localhost:3000/entries/${formData.id}`, {
       method: "PATCH",
       headers: {
@@ -23,7 +34,8 @@ function EntryEditor({ onUpdateEntry, activeEntry }) {
       body: JSON.stringify({
         ...formData,
       }),
-    }).then((res) => res.json())
+    })
+      .then((res) => res.json())
       .then((updatedEntry) => onUpdateEntry(updatedEntry));
   }
 
